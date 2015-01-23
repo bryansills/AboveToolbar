@@ -1,6 +1,7 @@
 package com.bryansills.abovetoolbar;
 
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.ActionBarActivity;
@@ -13,6 +14,12 @@ import android.widget.Button;
  * A placeholder fragment containing a simple view.
  */
 public class PlaceholderFragment extends Fragment {
+
+    private OnHideButtonPressed mListener;
+
+    public interface OnHideButtonPressed {
+        public void onHideButtonPressed();
+    }
 
     public PlaceholderFragment() {
     }
@@ -36,6 +43,23 @@ public class PlaceholderFragment extends Fragment {
             }
         });
 
+        hideButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mListener.onHideButtonPressed();
+            }
+        });
+
         return rootView;
+    }
+
+    @Override
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+        try {
+            mListener = (OnHideButtonPressed) activity;
+        } catch (ClassCastException e) {
+            throw new ClassCastException(activity.toString() + " must implement OnHideButtonPressed");
+        }
     }
 }
