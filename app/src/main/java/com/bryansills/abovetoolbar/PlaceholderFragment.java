@@ -5,10 +5,15 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.ActionBarActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * A placeholder fragment containing a simple view.
@@ -16,6 +21,10 @@ import android.widget.Button;
 public class PlaceholderFragment extends Fragment {
 
     private OnHideButtonPressed mListener;
+
+    private RecyclerView mRecyclerView;
+    private RecyclerView.Adapter mAdapter;
+    private RecyclerView.LayoutManager mLayoutManager;
 
     public interface OnHideButtonPressed {
         public void onHideButtonPressed();
@@ -49,6 +58,26 @@ public class PlaceholderFragment extends Fragment {
                 mListener.onHideButtonPressed();
             }
         });
+
+
+        mRecyclerView = (RecyclerView) rootView.findViewById(R.id.recycler_view);
+
+        // use this setting to improve performance if you know that changes
+        // in content do not change the layout size of the RecyclerView
+        mRecyclerView.setHasFixedSize(true);
+
+        // use a linear layout manager
+        mLayoutManager = new LinearLayoutManager(getActivity());
+        mRecyclerView.setLayoutManager(mLayoutManager);
+
+        List<String> items = new ArrayList<String>();
+        for (int i = 1; i <= 100; i++) {
+            items.add("Item " + i);
+        }
+
+        // specify an adapter (see also next example)
+        mAdapter = new MainAdapter(items);
+        mRecyclerView.setAdapter(mAdapter);
 
         return rootView;
     }

@@ -3,23 +3,31 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:orientation="vertical"
-    tools:context=".MainActivity$PlaceholderFragment">
+    android:orientation="vertical">
 
-    <Button
-        android:id="@+id/rename_btn"
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recycler_view"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"/>
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Rename Button"/>
+        android:orientation="vertical"
+        android:background="@color/cyan">
 
-    <Button
-        android:id="@+id/hide_btn"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Hide Image Button"/>
+        <Button
+            android:id="@+id/rename_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Rename Button"/>
 
+        <Button
+            android:id="@+id/hide_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Hide Image Button"/>
+    </LinearLayout>
 </LinearLayout>
+
